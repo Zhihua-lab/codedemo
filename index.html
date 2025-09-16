@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Eye Ball Move on Mousemove</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="face">
+        <div class="eyes">
+            <div class="eye">
+
+            </div>
+            <div class="eye">
+
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelector('body').addEventListener('mousemove', eyeball);
+
+        function eyeball(event) {
+            var eyes = document.querySelectorAll('.eye');
+            eyes.forEach(function (eye) {
+                let x = eye.getBoundingClientRect().left + eye.clientWidth / 2;
+                let y = eye.getBoundingClientRect().top + eye.clientHeight / 2;
+
+                let dx = event.pageX - x;
+                let dy = event.pageY - y;
+
+                let radian = Math.atan2(dy, dx);
+                let rot = radian * (180 / Math.PI) + 180;
+
+                eye.style.transform = "rotate(" + rot + "deg)";
+            });
+        }
+
+
+    </script>
+
+</body>
+
+</html>
